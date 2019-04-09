@@ -9,11 +9,16 @@ import lombok.NoArgsConstructor;
 public class BondTO {
     private Long creditorId;
     private Long debtorId;
+    private String debtorName;
     private Integer calculatedBond;
 
     public BondTO(Bond bond) {
         creditorId = bond.getCreditorId();
         debtorId = bond.getDebtorId();
         calculatedBond = bond.getCalculatedBond();
+    }
+
+    public void setDebtorName(String debtorName) {
+        this.debtorName = debtorName;
     }
 }

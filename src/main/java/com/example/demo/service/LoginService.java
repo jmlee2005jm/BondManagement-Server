@@ -15,13 +15,11 @@ public class LoginService {
     private final UserRepository userRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public Long login(LoginTO loginTO) {
-        Long userId = 0L;
+    public User login(LoginTO loginTO) {
         User user = userRepository.findByEmail(loginTO.getEmail());
         if (user != null && bCryptPasswordEncoder.matches(loginTO.getPassword(), user.getPassword())) {
-            userId = user.getId();
-            LoggerFactory.getLogger("LoginService").info("####login : Success " + userId);
+            LoggerFactory.getLogger("LoginService").info("####login : Success " + user.getId() + "," + user.getName());
         }
-        return userId;
+        return user;
     }
 }
